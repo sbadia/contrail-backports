@@ -1,0 +1,54 @@
+#!/usr/bin/make -f
+
+export PYTHONWARNINGS=d
+export DEB_BUILD_OPTIONS=nocheck
+
+PYVERS := $(shell pyversions -r)
+PY3VERS := $(shell py3versions -r)
+
+%:
+	dh $@ --with python2,python3 --buildsystem=python_distutils
+
+override_dh_auto_configure:
+	rm -f urllib3/packages/six.py
+
+override_dh_auto_build:
+	set -ex; \
+	for python in $(PYVERS) $(PY3VERS); do \
+		$$python setup.py build; \
+	done
+
+override_dh_auto_clean:
+	rm -rf build
+	rm -f .coverage
+	rm -rf *.egg-info
+	dh_auto_clean
+
+override_dh_auto_install:
+	set -ex; \
+	for python in $(PYVERS); do \
+		$$python setup.py install --skip-build --root debian/python-urllib3 \
+			--install-layout deb; \
+	done
+
+	set -ex; \
+	for python in $(PY3VERS); do \
+		$$python setup.py install --skip-build --root debian/python3-urllib3 \
+			--install-layout deb; \
+	done
+
+	# Remove dummyserver/ tests to not pollute namespace.
+	rm -rf debian/python*-urllib3/usr/lib/python*/dist-packages/dummyserver
+
+override_dh_auto_test:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	# Python3 testing is not possible at the moment because missing
+	# dependencies: python3-coverage.
+	set -ex; \
+	for python in $(PYVERS); do \
+		$$python /usr/bin/nosetests; \
+	done
+endif
+
+override_dh_installchangelogs:
+	dh_installchangelogs CHANGES.rst

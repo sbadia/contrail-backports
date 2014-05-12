@@ -1,0 +1,18 @@
+Author: Jamie Strandboge <jamie@canonical.com>
+Description: require SSL certificate validation by default by using
+ CERT_REQUIRED and using the system /etc/ssl/certs/ca-certificates.crt
+Bug-Ubuntu: https://launchpad.net/bugs/1047054
+
+Index: python-urllib3-1.3/urllib3/connectionpool.py
+===================================================================
+--- python-urllib3-1.3.orig/urllib3/connectionpool.py	2012-09-06 16:03:50.000000000 -0500
++++ python-urllib3-1.3/urllib3/connectionpool.py	2012-09-06 16:08:59.000000000 -0500
+@@ -463,7 +463,7 @@
+                  strict=False, timeout=None, maxsize=1,
+                  block=False, headers=None,
+                  key_file=None, cert_file=None,
+-                 cert_reqs='CERT_NONE', ca_certs=None):
++                 cert_reqs='CERT_REQUIRED', ca_certs='/etc/ssl/certs/ca-certificates.crt'):
+ 
+         super(HTTPSConnectionPool, self).__init__(host, port,
+                                                   strict, timeout, maxsize,
