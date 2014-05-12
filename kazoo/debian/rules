@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=kazoo
+export PYBUILD_DISABLE=test
+
+%:
+	dh $@ --with python2
+
+.PHONY: override_dh_installchangelogs
+override_dh_installchangelogs:
+	dh_installchangelogs CHANGES.rst
+
+.PHONY: override_dh_auto_build
+override_dh_auto_build:
+	sphinx-build -b html docs build/html
+	dh_auto_build -S python_distutils
+
+.PHONY: override_dh_auto_install
+override_dh_auto_install:
+	dh_auto_install -S python_distutils
+
+.PHONY: override_dh_clean
+override_dh_clean:
+	rm -rf build
+	dh_clean
+
+.PHONY: override_dh_auto_test
+override_dh_auto_test:
