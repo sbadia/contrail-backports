@@ -1,0 +1,28 @@
+Description: Use the bundle provided by ca-certificates instead of
+ the embedded one.
+Author: Daniele Tricoli <eriol@mornie.org>
+Forwarded: not-needed
+Last-Update: 2013-01-19
+
+--- a/requests/certs.py
++++ b/requests/certs.py
+@@ -25,7 +25,7 @@
+     if certifi:
+         return certifi.where()
+
+-    return os.path.join(os.path.dirname(__file__), 'cacert.pem')
++    return '/etc/ssl/certs/ca-certificates.crt'
+
+ if __name__ == '__main__':
+     print(where())
+--- a/setup.py
++++ b/setup.py
+@@ -35,7 +35,7 @@
+     author_email='me@kennethreitz.com',
+     url='http://python-requests.org',
+     packages=packages,
+-    package_data={'': ['LICENSE', 'NOTICE'], 'requests': ['*.pem']},
++    package_data={'': ['LICENSE', 'NOTICE'],},
+     package_dir={'requests': 'requests'},
+     include_package_data=True,
+     install_requires=requires,
