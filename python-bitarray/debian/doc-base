@@ -1,0 +1,10 @@
+Document: python-bitarray
+Title: Bitarray Python module documentation
+Author: Ilan Schnell
+Abstract: This module provides an object type which efficiently
+ represents an array of booleans.
+Section: Programming/Python
+
+Format: HTML
+Index: /usr/share/doc/python-bitarray/README.html
+Files: /usr/share/doc/python-bitarray/README.html
