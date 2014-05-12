@@ -1,0 +1,27 @@
+six (1.2.0-1contrail1) trusty; urgency=medium
+
+  * Ubuntu release (for OpenContrail PPA)
+
+ -- Sebastien Badia <seb@sebian.fr>  Fri, 02 May 2014 22:55:58 +0000
+
+six (1.2.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Add a watch file.
+  * Policy version 3.9.4: no changes required.
+  * Run the upstream test suite.
+
+ -- Colin Watson <cjwatson@debian.org>  Fri, 21 Sep 2012 22:53:29 +0100
+
+six (1.1.0-2) unstable; urgency=low
+
+  * Convert to source format 3.0 (quilt).
+  * Remove the build directory on clean.
+
+ -- Colin Watson <cjwatson@debian.org>  Tue, 17 Jan 2012 22:40:53 +0000
+
+six (1.1.0-1) unstable; urgency=low
+
+  * Initial release (closes: #656234).
+
+ -- Colin Watson <cjwatson@debian.org>  Tue, 17 Jan 2012 17:23:12 +0000
