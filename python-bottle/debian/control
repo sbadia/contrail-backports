@@ -1,0 +1,56 @@
+Source: python-bottle
+Section: python
+Priority: optional
+Maintainer: David Paleino <dapal@debian.org>
+Uploaders: Federico Ceratto <federico.ceratto@gmail.com>
+Build-Depends:
+ debhelper (>= 9~)
+Build-Depends-Indep:
+ python-all (>= 2.6.6-3~)
+ , python-sphinx
+# needed for build-time tests
+ , python-cherrypy
+ , python-eventlet
+ , python-flup
+ , python-gevent
+ , python-jinja2
+ , python-mako
+ , python-nose
+ , python-paste
+ , python-simpletal
+ , python-tornado
+ , python-twisted
+ , python-werkzeug
+# , gunicorn
+Standards-Version: 3.9.4
+Homepage: http://bottlepy.org
+X-Python-Version: >= 2.5
+Vcs-Git: git://git.debian.org/git/collab-maint/python-bottle.git
+Vcs-Browser: http://git.debian.org/?p=collab-maint/python-bottle.git
+
+Package: python-bottle
+Architecture: all
+Depends:
+ ${python:Depends}
+ , ${misc:Depends}
+Provides: ${python:Provides}
+Description: fast and simple WSGI-framework for Python
+ Bottle is a fast and simple WSGI-framework for the Python programming
+ language. It offers request dispatching with url parameter support
+ (routes), templates, key/value databases, a built-in HTTP server and
+ adapters for many third party WSGI/HTTP-server and template engines.
+
+Package: python-bottle-doc
+Architecture: all
+Section: doc
+Depends:
+ ${misc:Depends}
+ , libjs-jquery
+ , libjs-underscore
+Description: fast and simple WSGI-framework for Python - documentation
+ Bottle is a fast and simple WSGI-framework for the Python programming
+ language. It offers request dispatching with url parameter support
+ (routes), templates, key/value databases, a built-in HTTP server and
+ adapters for many third party WSGI/HTTP-server and template engines.
+ .
+ This package contains the Python module documentation.
